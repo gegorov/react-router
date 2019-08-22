@@ -6,6 +6,7 @@ import './App.css';
 import Home from './components/Home';
 import Navigation from './components/Navigation';
 import Vitamin from './components/Vitamin';
+import ProductDetails from './components/ProductDetails';
 
 import data from './data/data.json';
 
@@ -42,8 +43,7 @@ class App extends Component {
   }
 
   render() {
-    const { cards } = this.state;
-    return (
+    return(
       <Router>
         <div className="App">
           <header className="App-header">
@@ -61,12 +61,23 @@ class App extends Component {
             <Navigation closeNav={this.closeNav} />
           </header>
           <Switch>
-          <Route exact path="/" render={() => (
-            <Home cards={cards} />
-            )} />
-          <Route exact path="/vitamin" render={(props) => (
-            <Vitamin cards={cards} />
-            )} />
+            <Route exact path="/" render={() => (
+              <Home cards={this.state.cards} />
+              )} />
+            <Route exact path="/vitamin" render={(props) => (
+              <Vitamin cards={this.state.cards} />
+              )} />
+            
+            <Route exact path="/product/:id" render={(props) => {
+              let cardPosition = props.location.pathname.replace('/product/', '');
+              console.log('### cardsPosition:', cardPosition);
+              
+              return (
+                
+                <ProductDetails card={this.state.cards[cardPosition]} />
+                )
+              }}
+            />
           </Switch>
 
         </div>

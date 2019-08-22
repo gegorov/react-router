@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Card.css';
 
-const Card = (props) =>  (
-  <div className={props.card.animation}>
-    <Link to={`/product/${props.card.id}`}>
+const ProductDetails = (props) => {
+  console.log('ProductDetails props: ', props);
+  return (
+    <div className={props.card.animation}>
       <div className="front">
         <img src="juice.jpg" alt="Avatar" className="card-image" />
         <div className="container">
@@ -13,8 +12,8 @@ const Card = (props) =>  (
           <p>{props.card.description}</p>
         </div>
       </div>
-    </Link>
-  </div>
-);
+    </div>
+  );
+}
 
-export default Card;
+export default ProductDetails;
